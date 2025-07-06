@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: backend_app
+    build:
+      context: .
+      dockerfile: DockerFile
+    ports:
+      - "7000:7000"
+    environment:
+      - NODE_ENV=development
+    env_file:
+      - environments/dev.env
+    depends_on:
+      - mongo
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
+
+  mongo:
+    container_name: mongodb
+    image: mongo:6
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:

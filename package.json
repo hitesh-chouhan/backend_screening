@@ -1,0 +1,51 @@
+{
+  "name": "backend_screening",
+  "version": "1.0.0",
+  "description": "task to create  access control system for documnets of various orgenization",
+  "engines": {
+    "node": ">=20",
+    "npm": ">=10"
+  },
+  "scripts": {
+    "build": "export NODE_OPTIONS=--max_old_space_size=4096 && tsc",
+    "lint": "eslint . --ext .ts",
+    "lint-and-fix": "eslint . --ext .ts --fix",
+    "start:dev": "cross-env NODE_ENV=development npm run app",
+    "start:prod": "cross-env NODE_ENV=production npm run app",
+    "start:test": "cross-env NODE_ENV=test npm run app",
+    "start:stage": "cross-env NODE_ENV=stage npm run app",
+    "app": "tsc && pm2 start dist/index.js --name dots-revenue",
+    "local": "cross-env NODE_ENV=development nodemon src/index.ts",
+    "local:test": "cross-env NODE_ENV=test nodemon src/index.ts",
+    "local:stage": "cross-env NODE_ENV=stage nodemon src/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@dotslibrary/dots-core": "^1.0.19",
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
+    "dotenv": "^17.0.1",
+    "env": "^0.0.2",
+    "events": "^3.3.0",
+    "http": "^0.0.1-security",
+    "http-errors": "^2.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^7.0.4",
+    "nodemon": "^3.1.10",
+    "password-generator": "^2.3.2",
+    "socket.io": "^4.8.1",
+    "tsc-node": "^0.0.3",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.10",
+    "@types/socket.io": "^3.0.1",
+    "cross-env": "^7.0.3",
+    "ts-node": "^10.9.2",
+    "tslib": "^2.8.1"
+  }
+}
